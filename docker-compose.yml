@@ -1,8 +1,10 @@
-node:
+node012:
   image: node:0.12-wheezy
   working_dir: /usr/src/app
   links:
-    - hipache:redis
+    - web
+    - hipache:fulano.com
+    - redis
   volumes:
     - .:/usr/src/app
     - /var/run/docker.sock:/var/run/docker.sock
@@ -13,10 +15,45 @@ node010:
   image: node:0.10-wheezy
   working_dir: /usr/src/app
   links:
-    - hipache:redis
+    - redis
+    - hipache
+    - web
   volumes:
     - .:/usr/src/app
     - /var/run/docker.sock:/var/run/docker.sock
 
+swarm:
+  image: node:0.12-wheezy
+  working_dir: /usr/src/app
+  links:
+    - web
+    - hipache:fulano.com
+    - redis
+  volumes:
+    - .:/usr/src/app
+    - /Users/trsouz/.docker/machine/machines/swarm-master:/Users/trsouz/.docker/machine/machines/swarm-master
+  environment:
+    - DOCKER_HOST=tcp://192.168.99.102:3376
+    - DOCKER_CERT_PATH=/Users/trsouz/.docker/machine/machines/swarm-master
+    - DOCKER_TLS_VERIFY=1
+
 hipache:
-  image: hipache
+  image: trsouz/hipache
+  links:
+    - redis
+  ports:
+    - 80:80
+
+redis:
+  image: redis
+
+web:
+  image: tenstartups/redis-commander
+  command: "--redis-host redis"
+  links:
+    - redis
+  ports:
+    - 8081
+  environment:
+    - VHOST=fulano.com
+    - VHOST_PORT=8081

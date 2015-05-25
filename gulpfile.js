@@ -16,8 +16,7 @@ gulp.task('lint', function () {
 gulp.task('test', ['lint'], function () {
   'use strict';
   return gulp.src(['tests/*.js'])
-    .pipe(mocha({bail: true}))
-    .on('error', gutil.log);
+    .pipe(mocha({bail: false}));
 });
 
 gulp.task('watch', function () {

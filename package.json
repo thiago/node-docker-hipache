@@ -11,22 +11,25 @@
   "main": "./lib/index.js",
   "repository": "https://github.com/trsouz/node-docker-hipache",
   "dependencies": {
-    "bluebird": "^2.9.24",
+    "bluebird": "^2.9.25",
+    "commander": "^2.8.1",
     "docker-events": "0.0.2",
-    "dockerode": "^2.1.2",
+    "dockerode": "^2.1.4",
     "events": "^1.0.2",
-    "hipachectl": "0.0.2",
-    "lodash": "^3.7.0",
+    "hipachectl": "0.0.5",
+    "lodash": "^3.9.1",
     "redis": "^0.12.1"
   },
   "devDependencies": {
     "gulp": "3.*",
-    "gulp-jshint": "1.*",
-    "gulp-mocha": "0.*",
+    "gulp-jshint": "^1.11.0",
+    "gulp-mocha": "^2.1.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
-    "jshint-stylish": "0.*",
-    "mocha": "1.*",
-    "must": ">= 0.11 < 1"
+    "jshint-stylish": "^2.0.0",
+    "lodash": "^3.9.1",
+    "mocha": "^2.2.5",
+    "must": ">= 0.11 < 1",
+    "restling": "^0.9.1"
   }
 }
